@@ -21,9 +21,13 @@ class AlienInvasion:
 
     def run_game(self):  # main loop and game
         while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
+            self._check_events()
+
+    def _check_events(self):
+        #reactions on mouse and keyboard
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
 
             self.screen.fill(self.settings.bg_color)  # background color refresh
             self.ship.blitme() #show ship
