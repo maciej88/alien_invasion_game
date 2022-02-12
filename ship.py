@@ -13,7 +13,7 @@ class Ship:
         self.image = pygame.image.load('images/ship.bmp')
         self.rect = self.image.get_rect()  # rect as rectangle
 
-        self.rect.midbottom = self.screen_rect.midbottom  # in middle of bottom window
+        self.rect.center = self.screen_rect.center  # in center of window
 
         self.x = float(self.rect.x)
 
