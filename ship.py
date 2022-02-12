@@ -14,6 +14,12 @@ class Ship:
 
         self.rect.midbottom = self.screen_rect.midbottom  # in middle of bottom window
 
+        self.moving_right = False
+
+    def update(self):
+        if self.moving_right:
+            self.rect.x += 1
+
     def blitme(self):
         # ship view
         self.screen.blit(self.image, self.rect)
