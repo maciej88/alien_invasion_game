@@ -1,5 +1,5 @@
 import pygame
-import pygame.sprite import Sprite
+from pygame.sprite import Sprite
 
 class Bullet(Sprite):
 
@@ -15,3 +15,10 @@ class Bullet(Sprite):
         self.rect.midtop = ai_game.ship.rect.midtop
 
         self.y = float(self.rect.y)
+
+    def update(self):
+        self.y -= self.settings.bullet_speed #bullet movements
+        self.rect.y = self.y
+
+    def draw_bullet(self):
+        pygame.draw.rect(self.screen, self.color, self.rect) #schow bullet on screen
