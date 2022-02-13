@@ -13,7 +13,7 @@ class Ship:
         self.image = pygame.image.load('images/ship.bmp')
         self.rect = self.image.get_rect()  # rect as rectangle
 
-        self.rect.center = self.screen_rect.center  # in center of window
+        self.rect.midbottom = self.screen_rect.midbottom # ship spawning place in window
 
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)
