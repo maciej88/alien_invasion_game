@@ -102,6 +102,22 @@ class AlienInvasion:
         alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         self.aliens.add(alien)
 
+    def _check_fleet_edges(self):
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_fleet_direction()
+                break
+
+    def _change_fleet_direction(self):
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
+
+    def _update_aliens(self):
+        self._check_fleet_edges()
+        self.aliens.update()
+
+
     def _update_bullets(self):
         self.bullets.update()
         for bullet in self.bullets.copy():  # bullets out of border delete
@@ -110,9 +126,6 @@ class AlienInvasion:
         # print(len(self.bullets))
 
         self._update_screen()
-
-    def _update_aliens(self):
-        self.aliens.update()
 
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
