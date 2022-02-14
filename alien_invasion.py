@@ -29,8 +29,10 @@ class AlienInvasion:
         while True:
             self._check_events()
             self._update_screen()
-            self.bullets.update()
+            self._update_bullets()
+            self._update_aliens()
             self.ship.update()
+
 
     def _check_events(self):
         # reactions on mouse and keyboard
@@ -109,6 +111,9 @@ class AlienInvasion:
 
         self._update_screen()
 
+    def _update_aliens(self):
+        self.aliens.update()
+
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
@@ -117,6 +122,7 @@ class AlienInvasion:
         self.aliens.draw(self.screen)
 
         pygame.display.flip()  # last modified window (view)
+
 
 
 if __name__ == '__main__':
