@@ -33,7 +33,6 @@ class AlienInvasion:
             self._update_aliens()
             self.ship.update()
 
-
     def _check_events(self):
         # reactions on mouse and keyboard
         for event in pygame.event.get():
@@ -117,7 +116,6 @@ class AlienInvasion:
         self._check_fleet_edges()
         self.aliens.update()
 
-
     def _update_bullets(self):
         self.bullets.update()
         for bullet in self.bullets.copy():  # bullets out of border delete
@@ -144,7 +142,6 @@ class AlienInvasion:
         self.aliens.draw(self.screen)
 
         pygame.display.flip()  # last modified window (view)
-
 
 
 if __name__ == '__main__':
