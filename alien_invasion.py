@@ -116,6 +116,10 @@ class AlienInvasion:
         self._check_fleet_edges()
         self.aliens.update()
 
+        if pygame.sprite.spritecollideany(self.ship, self.aliens): #crash detection
+            print('You DIE!')
+
+
     def _update_bullets(self):
         self.bullets.update()
         for bullet in self.bullets.copy():  # bullets out of border delete
