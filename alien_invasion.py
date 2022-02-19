@@ -1,7 +1,9 @@
 import sys
+from time import sleep
 import pygame
 
 from settings import Settings
+from game_stats import GameStats
 from ship import Ship
 from alien import Alien
 from bullet import Bullet
@@ -22,6 +24,7 @@ class AlienInvasion:
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
+        self.stats = GameStats(self)
 
         self._create_fleet()
 
@@ -117,9 +120,19 @@ class AlienInvasion:
         self.aliens.update()
 
         if pygame.sprite.spritecollideany(self.ship, self.aliens): #crash detection
-            print('You DIE!')
+            self._ship_hit()
 
+    def _ship_hit(self):
+        self.stats.ships_left -= 1
 
+        self.aliens.empty()
+        self.bullets.empty()
+
+        self._create_fleet()
+        self.ship.center_ship()
+
+        sleep(0.5)
+        
     def _update_bullets(self):
         self.bullets.update()
         for bullet in self.bullets.copy():  # bullets out of border delete
