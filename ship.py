@@ -40,6 +40,7 @@ class Ship:
         # ship view
         self.screen.blit(self.image, self.rect)
 
-    def center_ship(self):
+    def midbottom_ship(self):
         self.rect.midbottom = self.screen_rect.midbottom
         self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
