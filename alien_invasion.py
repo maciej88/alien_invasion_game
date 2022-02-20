@@ -30,7 +30,7 @@ class AlienInvasion:
         self._create_fleet()
 
         #play buttonn
-        self.play_button = Button(self, "Play\n press 'q' for exit")
+        self.play_button = Button(self, "Play")
 
     def run_game(self):  # main loop and game
         while True:
@@ -54,6 +54,10 @@ class AlienInvasion:
 
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
 
             self.screen.fill(self.settings.bg_color)  # background color refresh
             self.ship.blitme()  # show ship
@@ -81,6 +85,10 @@ class AlienInvasion:
             self.ship.moving_up = False
         elif event.key == pygame.K_DOWN:
             self.ship.moving_down = False
+
+    def _check_play_button(self, mouse_pos):
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.stats.game_active = True
 
     def _fire_bullet(self):
         if len(self.bullets) < self.settings.bullets_allowed:
