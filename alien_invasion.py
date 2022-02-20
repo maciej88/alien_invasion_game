@@ -31,10 +31,12 @@ class AlienInvasion:
     def run_game(self):  # main loop and game
         while True:
             self._check_events()
+
+            if self.stats.game_active:
+                self._update_bullets()
+                self._update_aliens()
+                self.ship.update()
             self._update_screen()
-            self._update_bullets()
-            self._update_aliens()
-            self.ship.update()
 
     def _check_events(self):
         # reactions on mouse and keyboard
