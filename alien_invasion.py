@@ -122,6 +122,8 @@ class AlienInvasion:
         if pygame.sprite.spritecollideany(self.ship, self.aliens): #crash detection
             self._ship_hit()
 
+        self._check_aliens_bottom()
+
     def _ship_hit(self):
         self.stats.ships_left -= 1
 
@@ -150,6 +152,13 @@ class AlienInvasion:
             self._create_fleet()
 
         self._update_screen()
+
+    def _check_aliens_bottom(self):
+        screen_rect = self.screen.get_rect()
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= screen_rect.bottom:
+                self._ship_hit()
+                break
 
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
