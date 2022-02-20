@@ -125,15 +125,19 @@ class AlienInvasion:
         self._check_aliens_bottom()
 
     def _ship_hit(self):
-        self.stats.ships_left -= 1
+        if self.stats.ships_left > 0:
 
-        self.aliens.empty()
-        self.bullets.empty()
+            self.stats.ships_left -= 1
 
-        self._create_fleet()
-        self.ship.center_ship()
+            self.aliens.empty()
+            self.bullets.empty()
 
-        sleep(0.5)
+            self._create_fleet()
+            self.ship.center_ship()
+
+            sleep(0.5)
+        else:
+            self.stats.game_active = False
         
     def _update_bullets(self):
         self.bullets.update()
