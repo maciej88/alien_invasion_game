@@ -98,6 +98,8 @@ class AlienInvasion:
             self._create_fleet()
             self.ship.midbottom_ship()
 
+            self.settings.initialize_dynamic_settings()
+
             pygame.mouse.set_visible(False)
 
     def _fire_bullet(self):
@@ -179,6 +181,7 @@ class AlienInvasion:
         if not self.aliens:
             self.bullets.empty()
             self._create_fleet()
+            self.settings.increase_speed()
 
         self._update_screen()
 
