@@ -185,6 +185,10 @@ class AlienInvasion:
             self._create_fleet()
             self.settings.increase_speed()
 
+        if collisions:
+            self.stats.score += self.settings.alien_points
+            self.sb.prep_score()
+
         self._update_screen()
 
     def _check_aliens_bottom(self):
