@@ -98,6 +98,8 @@ class AlienInvasion:
             self._create_fleet()
             self.ship.midbottom_ship()
 
+            pygame.mouse.set_visible(False)
+
     def _fire_bullet(self):
         if len(self.bullets) < self.settings.bullets_allowed:
             new_bullet = Bullet(self)
@@ -160,6 +162,7 @@ class AlienInvasion:
             sleep(0.5)
         else:
             self.stats.game_active = False
+            pygame.mouse.set_visible(True)
         
     def _update_bullets(self):
         self.bullets.update()
