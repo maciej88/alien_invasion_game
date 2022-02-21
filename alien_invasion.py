@@ -104,6 +104,9 @@ class AlienInvasion:
 
             pygame.mouse.set_visible(False)
 
+            #points reset
+            self.sb.prep_score()
+
     def _fire_bullet(self):
         if len(self.bullets) < self.settings.bullets_allowed:
             new_bullet = Bullet(self)
