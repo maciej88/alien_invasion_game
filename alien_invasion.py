@@ -88,7 +88,14 @@ class AlienInvasion:
 
     def _check_play_button(self, mouse_pos):
         if self.play_button.rect.collidepoint(mouse_pos):
+            self.stats.reset_stats()
             self.stats.game_active = True
+
+            self.aliens.empty()
+            self.bullets.empty()
+
+            self._create_fleet()
+            self.ship.midbottom_ship()
 
     def _fire_bullet(self):
         if len(self.bullets) < self.settings.bullets_allowed:
