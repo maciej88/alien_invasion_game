@@ -13,6 +13,8 @@ class Scoreboard:
 
         self.prep_score()
 
+        self.prep_high_score()
+
     def prep_score(self):
         rounded_score = round(self.stats.score, -1)
         #score_str = str(self.stats.score)
@@ -27,3 +29,10 @@ class Scoreboard:
 
     def show_score(self):
         self.screen.blit(self.score_image, self.score_rect)
+
+    def prep_high_score(self):
+        high_score = round(self.stats.high_score, -1)
+        high_score_str = "{:,}".format(high_score)
+        self.high_score_image = self.font.render(
+            high_score_str, True, self.text_color, self.settings.bg_color
+        )
