@@ -107,6 +107,7 @@ class AlienInvasion:
             #points reset
             self.sb.prep_score()
             self.sb.prep_level()
+            self.sb.prep_ships()
 
     def _fire_bullet(self):
         if len(self.bullets) < self.settings.bullets_allowed:
