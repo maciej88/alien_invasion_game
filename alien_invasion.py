@@ -168,6 +168,8 @@ class AlienInvasion:
             self._create_fleet()
             self.ship.midbottom_ship()
 
+            self.sb.prep_ships()
+
             sleep(0.5)
         else:
             self.stats.game_active = False
