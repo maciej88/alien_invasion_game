@@ -34,7 +34,9 @@ class AlienInvasion:
         #play buttonn
         self.play_button = Button(self, "Play")
 
-    def run_game(self):  # main loop and game
+    def run_game(self):
+        """main loop and game"""
+
         while True:
             self._check_events()
 
