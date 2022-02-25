@@ -215,6 +215,8 @@ class AlienInvasion:
                 break
 
     def _update_screen(self):
+        """update images on screen and main screen"""
+
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
         for bullet in self.bullets.sprites():
