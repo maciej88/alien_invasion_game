@@ -68,6 +68,8 @@ class AlienInvasion:
             self.ship.blitme()  # show ship
 
     def _check_keydown_events(self, event):
+        """Keyboard reaction on click"""
+
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
@@ -82,6 +84,8 @@ class AlienInvasion:
             sys.exit()
 
     def _check_keyup_events(self, event):
+        """keyboard reaction for key release"""
+
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
@@ -92,6 +96,8 @@ class AlienInvasion:
             self.ship.moving_down = False
 
     def _check_play_button(self, mouse_pos):
+        """mouse click on play"""
+
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.stats.game_active:
             self.stats.reset_stats()
@@ -113,11 +119,15 @@ class AlienInvasion:
             self.sb.prep_ships()
 
     def _fire_bullet(self):
+        """bullet fire event"""
+
         if len(self.bullets) < self.settings.bullets_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
 
     def _create_fleet(self):
+        """fleet event"""
+
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
         available_space_x = self.settings.screen_width - (2 * alien_width)
@@ -133,6 +143,8 @@ class AlienInvasion:
                 self._create_alien(alien_number, row_number)
 
     def _create_alien(self, alien_number, row_number):
+        """alien implementation into game"""
+
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
         alien.x = alien_width + 2 * alien_width * alien_number
@@ -141,17 +153,23 @@ class AlienInvasion:
         self.aliens.add(alien)
 
     def _check_fleet_edges(self):
+        """reaction on edges of window"""
+
         for alien in self.aliens.sprites():
             if alien.check_edges():
                 self._change_fleet_direction()
                 break
 
     def _change_fleet_direction(self):
+        """switch direction after hit border of window"""
+
         for alien in self.aliens.sprites():
             alien.rect.y += self.settings.fleet_drop_speed
         self.settings.fleet_direction *= -1
 
     def _update_aliens(self):
+        """crash reaction"""
+
         self._check_fleet_edges()
         self.aliens.update()
 
@@ -161,6 +179,8 @@ class AlienInvasion:
         self._check_aliens_bottom()
 
     def _ship_hit(self):
+        """ship reactions"""
+
         if self.stats.ships_left > 0:
 
             self.stats.ships_left -= 1
@@ -179,6 +199,8 @@ class AlienInvasion:
             pygame.mouse.set_visible(True)
         
     def _update_bullets(self):
+        """bullets implementation"""
+
         self.bullets.update()
         for bullet in self.bullets.copy():  # bullets out of border delete
             if bullet.rect.bottom <= 0:
@@ -187,6 +209,8 @@ class AlienInvasion:
         self._check_bullet_alien_collision()
 
     def _check_bullet_alien_collision(self):
+        """reaction for alien on bullets"""
+
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True
         )
@@ -208,6 +232,8 @@ class AlienInvasion:
         self._update_screen()
 
     def _check_aliens_bottom(self):
+        """reaction of game if alien rach bottom"""
+
         screen_rect = self.screen.get_rect()
         for alien in self.aliens.sprites():
             if alien.rect.bottom >= screen_rect.bottom:
@@ -233,5 +259,6 @@ class AlienInvasion:
 
 
 if __name__ == '__main__':
+    """game starting"""
     ai = AlienInvasion()
     ai.run_game()
