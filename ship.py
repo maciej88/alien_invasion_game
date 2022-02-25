@@ -26,6 +26,8 @@ class Ship(Sprite):
         self.moving_down = False
 
     def update(self):
+        """ship for ship based on movements"""
+
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.x += self.settings.ship_speed
         if self.moving_left and self.rect.left > 0:
@@ -39,7 +41,7 @@ class Ship(Sprite):
         self.rect.y = self.y
 
     def blitme(self):
-        # ship view
+        """ship view by location"""
         self.screen.blit(self.image, self.rect)
 
     def midbottom_ship(self):

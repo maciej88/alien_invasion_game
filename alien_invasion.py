@@ -47,7 +47,8 @@ class AlienInvasion:
             self._update_screen()
 
     def _check_events(self):
-        # reactions on mouse and keyboard
+        """reactions on mouse and keyboard"""
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
