@@ -2,8 +2,11 @@ import pygame
 from pygame.sprite import Sprite
 
 class Alien(Sprite):
+    """create alien object"""
 
     def __init__(self, ai_game):
+        """initialize alien and set position"""
+
         super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings
@@ -17,11 +20,15 @@ class Alien(Sprite):
         self.x = float(self.rect.x)
 
     def check_edges(self):
+        """return True if alien is at edge of screen"""
+
         screen_rect = self.screen.get_rect()
         if self.rect.right >= screen_rect.right or self.rect.left <= 0:
             return True #return true when alien reach border of window
 
     def update(self):
+        """move alien left or right"""
+
         self.x += (
                 self.settings.alien_speed * self.settings.fleet_direction
         ) #move in right
