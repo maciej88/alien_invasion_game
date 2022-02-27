@@ -2,6 +2,7 @@ import pygame
 from pygame.sprite import Sprite
 
 class Bullet(Sprite):
+    """create a bullet object"""
 
     def __init__(self, ai_game):
         super().__init__()
@@ -17,8 +18,12 @@ class Bullet(Sprite):
         self.y = float(self.rect.y)
 
     def update(self):
+        """move the bullet from bottom to top of screen"""
+
         self.y -= self.settings.bullet_speed #bullet movements
         self.rect.y = self.y
 
     def draw_bullet(self):
+        """draw bullet"""
+
         pygame.draw.rect(self.screen, self.color, self.rect) #schow bullet on screen
