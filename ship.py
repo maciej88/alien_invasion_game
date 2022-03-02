@@ -12,7 +12,7 @@ class Ship(Sprite):
         self.screen_rect = ai_game.screen.get_rect()
         self.settings = ai_game.settings
 
-        self.image = pygame.image.load('images/ship.bmp')
+        self.image = pygame.image.load('images/ship.png')
         self.rect = self.image.get_rect()  # rect as rectangle
 
         self.rect.midbottom = self.screen_rect.midbottom # ship spawning place in window
